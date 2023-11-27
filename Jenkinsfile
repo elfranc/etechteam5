@@ -1,27 +1,23 @@
 pipeline{
-	agent any 
-	stages{
-		stage('1-codecheckout'){
-			steps{
-				git clone
-			}
-		}
-		stage('2-codebuild'){
-			when {
-				branch 'main'
-			}
-			steps{
-				sh 'git version'
-			}
+    agent any
+    stages{
+        stage('1-clonecode'){
+            steps{
+                sh 'df-h'
+            }
 
-		}
-		stage('3-deployment'){
-			when {
-				branch 'develop'
-			}
-			steps{
-				sh 'mvn deploy'
-			}
-		}
-	}
+        }
+        stage('2-memorycheck'){
+            steps{
+                sh 'free -g'
+
+            }
+
+        }
+        stage('3-welcomepage'){
+            steps{
+                echo "welcome to jenkins"
+            }
+        }
+    }
 }
